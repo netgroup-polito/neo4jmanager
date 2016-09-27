@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property xmlns="http://www.example.org/response/" source="ep_1" destination="ep_2" direction="both">
+    <name>reachability</name>
+    <response>true</response>
+</property>

@@ -1,0 +1,6 @@
+{
+   "source" : "ep_1",
+   "destination" : "ep_2",
+   "direction" : "incoming",
+   "message" : "No available paths"
+}

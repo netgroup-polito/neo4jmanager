@@ -1,0 +1,4087 @@
+{
+   "nffg" : [ {
+      "id" : "nffg_0",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               }, {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+      }
+   }, {
+      "id" : "nffg_1",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               }, {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+      }
+   }, {
+      "id" : "nffg_2",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               }, {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_2",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               }, {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "mac" : {
+                           "vlanId" : 4090,
+                           "vlanPcp" : 2
+                        },
+                        "ip" : {
+                           "src" : "192.168.0.1",
+                           "dst" : "80.255.80.1"
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        }, {
+                           "type" : "discard"
+                        } ]
+                     }
+                  }, {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_2"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "discard"
+                        }, {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "ingPort" : "104",
+                        "udp" : {
+                           "src" : 480
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "prova1"
+         }, {
+            "value" : "prova2 prova3"
+         } ]
+      }
+   }, {
+      "id" : "nffg_3",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               }, {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               }, {
+                  "id" : "ci_2",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "discard"
+                        }, {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "mac" : {
+                           "vlanId" : 4090,
+                           "vlanPcp" : 2
+                        },
+                        "ip" : {
+                           "src" : "192.168.0.1",
+                           "dst" : "80.255.80.1"
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "discard"
+                        }, {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  }, {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_2"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "ingPort" : "104",
+                        "udp" : {
+                           "src" : 480
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "prova1"
+         }, {
+            "value" : "prova2 prova3"
+         } ]
+      }
+   }, {
+      "id" : "nffg_4",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               }, {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               }, {
+                  "id" : "ci_2",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_2"
+                        } ]
+                     }
+                  }, {
+                     "flowspace" : {
+                        "mac" : {
+                           "vlanId" : 4090,
+                           "vlanPcp" : 2
+                        },
+                        "ip" : {
+                           "src" : "192.168.0.1",
+                           "dst" : "80.255.80.1"
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        }, {
+                           "type" : "discard"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "ingPort" : "104",
+                        "udp" : {
+                           "src" : 480
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        }, {
+                           "type" : "discard"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "prova1"
+         }, {
+            "value" : "prova2 prova3"
+         } ]
+      }
+   }, {
+      "id" : "nffg_5",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "ip" : {
+                  "src" : "192.168.0.1"
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               }, {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+      }
+   }, {
+      "id" : "nffg_6",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               }, {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               }, {
+                  "id" : "ci_2",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_2"
+                        } ]
+                     }
+                  }, {
+                     "flowspace" : {
+                        "mac" : {
+                           "vlanId" : 4090,
+                           "vlanPcp" : 2
+                        },
+                        "ip" : {
+                           "src" : "192.168.0.1",
+                           "dst" : "80.255.80.1"
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "discard"
+                        }, {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        }, {
+                           "type" : "discard"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "ingPort" : "104",
+                        "udp" : {
+                           "src" : 480
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "prova1"
+         }, {
+            "value" : "prova2 prova3"
+         } ]
+      }
+   }, {
+      "id" : "nffg_7",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               }, {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               }, {
+                  "id" : "ci_2",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_2"
+                        } ]
+                     }
+                  }, {
+                     "flowspace" : {
+                        "mac" : {
+                           "vlanId" : 4090,
+                           "vlanPcp" : 2
+                        },
+                        "ip" : {
+                           "src" : "192.168.0.1",
+                           "dst" : "80.255.80.1"
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "discard"
+                        }, {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "discard"
+                        }, {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "ingPort" : "104",
+                        "udp" : {
+                           "src" : 480
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "prova1"
+         }, {
+            "value" : "prova2 prova3"
+         } ]
+      }
+   }, {
+      "id" : "nffg_8",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               }, {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_2",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               }, {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_2"
+                        } ]
+                     }
+                  }, {
+                     "flowspace" : {
+                        "mac" : {
+                           "vlanId" : 4090,
+                           "vlanPcp" : 2
+                        },
+                        "ip" : {
+                           "src" : "192.168.0.1",
+                           "dst" : "80.255.80.1"
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        }, {
+                           "type" : "discard"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "ingPort" : "104",
+                        "udp" : {
+                           "src" : 480
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        }, {
+                           "type" : "discard"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "prova1"
+         }, {
+            "value" : "prova2 prova3"
+         } ]
+      }
+   }, {
+      "id" : "nffg_9",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               }, {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_2",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               }, {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        }, {
+                           "type" : "discard"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "ingPort" : "104",
+                        "udp" : {
+                           "src" : 480
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "mac" : {
+                           "vlanId" : 4090,
+                           "vlanPcp" : 2
+                        },
+                        "ip" : {
+                           "src" : "192.168.0.1",
+                           "dst" : "80.255.80.1"
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "discard"
+                        }, {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  }, {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_2"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "prova1"
+         }, {
+            "value" : "prova2 prova3"
+         } ]
+      }
+   }, {
+      "id" : "nffg_10",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               }, {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               }, {
+                  "id" : "ci_2",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_2"
+                        } ]
+                     }
+                  }, {
+                     "flowspace" : {
+                        "mac" : {
+                           "vlanId" : 4090,
+                           "vlanPcp" : 2
+                        },
+                        "ip" : {
+                           "src" : "192.168.0.1",
+                           "dst" : "80.255.80.1"
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "discard"
+                        }, {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "ingPort" : "104",
+                        "udp" : {
+                           "src" : 480
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "discard"
+                        }, {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "prova1"
+         }, {
+            "value" : "prova2 prova3"
+         } ]
+      }
+   }, {
+      "id" : "nffg_11",
+      "version" : "3.0",
+      "endpoints" : {
+      },
+      "network_functions" : {
+      },
+      "network_elements" : {
+      },
+      "monitoring_parameters" : {
+      }
+   }, {
+      "id" : "nffg_12",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "ip" : {
+                  "src" : "192.168.0.1"
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               }, {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+      }
+   }, {
+      "id" : "nffg_13",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "ip" : {
+                  "src" : "192.168.0.1"
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               }, {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+      }
+   }, {
+      "id" : "nffg_14",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+      },
+      "network_elements" : {
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "prova1"
+         }, {
+            "value" : "prova2 prova3"
+         } ]
+      }
+   }, {
+      "id" : "nffg_15",
+      "version" : "3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ip" : {
+                  "src" : "192.168.0.30"
+               },
+               "tcp" : {
+                  "src" : 80,
+                  "dst" : 80
+               }
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "WAN accelerator",
+            "specification" : {
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in"
+                  }
+               }, {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "string"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_20",
+            "type" : "quellocheè",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "string"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "string"
+         } ]
+      }
+   }, {
+      "id" : "nffg_16",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               }, {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "prova1"
+         }, {
+            "value" : "prova2 prova3"
+         } ]
+      }
+   }, {
+      "id" : "nffg_17",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               }, {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+      }
+   }, {
+      "id" : "nffg_18",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               }, {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+      }
+   }, {
+      "id" : "nffg_19",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               }, {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+      }
+   }, {
+      "id" : "nffg_20",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               }, {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_2",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               }, {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "discard"
+                        }, {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "ingPort" : "104",
+                        "udp" : {
+                           "src" : 480
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "mac" : {
+                           "vlanId" : 4090,
+                           "vlanPcp" : 2
+                        },
+                        "ip" : {
+                           "src" : "192.168.0.1",
+                           "dst" : "80.255.80.1"
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "discard"
+                        }, {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  }, {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_2"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "prova1"
+         }, {
+            "value" : "prova2 prova3"
+         } ]
+      }
+   }, {
+      "id" : "nffg_21",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_11",
+            "flowspace" : {
+               "nodeId" : "string",
+               "ingPhysPort" : "string",
+               "udp" : {
+                  "src" : 80,
+                  "dst" : 8080
+               }
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_11",
+            "functionalType" : "WAN Accelerator",
+            "specification" : {
+               "deployment" : {
+                  "type" : "string"
+               },
+               "image" : {
+                  "uri" : "string"
+               },
+               "cpu" : {
+                  "model" : "string",
+                  "architecture" : "string",
+                  "clockSpeed" : "string"
+               },
+               "memory" : {
+                  "type" : "string",
+                  "size" : "string"
+               },
+               "storage" : {
+                  "type" : "string",
+                  "size" : "string"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_11",
+                  "port" : {
+                     "id" : 1,
+                     "direction" : "in",
+                     "type" : "string"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_22",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "string"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "string"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_11",
+            "type" : "string",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "ep_11",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "ingPort" : "string"
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_11"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "string"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "string"
+         } ]
+      }
+   }, {
+      "id" : "nffg_22",
+      "version" : "string",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "nodeId" : "xxx",
+               "ingPhysPort" : "string",
+               "mac" : {
+                  "src" : "12-34-56-78-9A-BC",
+                  "dst" : "DE-F1-23-45-67-89",
+                  "ethertype" : 2048
+               },
+               "ip" : {
+                  "src" : "192.168.0.18",
+                  "dst" : "192.168.0.30"
+               },
+               "udp" : {
+                  "src" : 80,
+                  "dst" : 80
+               }
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "NAT",
+            "specification" : {
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 0,
+                     "direction" : "in"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "string"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "string"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "string",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "string"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "string"
+         } ]
+      }
+   }, {
+      "id" : "nffg_23",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               }, {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_2"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+      }
+   }, {
+      "id" : "nffg_24",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 804
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               }, {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_2"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+      }
+   }, {
+      "id" : "nffg_25",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               }, {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               }, {
+                  "id" : "ci_2",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_2"
+                        } ]
+                     }
+                  }, {
+                     "flowspace" : {
+                        "mac" : {
+                           "vlanId" : 4090,
+                           "vlanPcp" : 2
+                        },
+                        "ip" : {
+                           "src" : "192.168.0.1",
+                           "dst" : "80.255.80.1"
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        }, {
+                           "type" : "discard"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "ingPort" : "104",
+                        "udp" : {
+                           "src" : 480
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        }, {
+                           "type" : "discard"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "prova1"
+         }, {
+            "value" : "prova2 prova3"
+         } ]
+      }
+   }, {
+      "id" : "nffg_26",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13",
+               "tcp" : {
+                  "src" : 80
+               }
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               }, {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_2",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               }, {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "mac" : {
+                           "vlanId" : 4090,
+                           "vlanPcp" : 2
+                        },
+                        "ip" : {
+                           "src" : "192.168.0.1",
+                           "dst" : "80.255.80.1"
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        }, {
+                           "type" : "discard"
+                        } ]
+                     }
+                  }, {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_2"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "discard"
+                        }, {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                        "ingPort" : "104",
+                        "udp" : {
+                           "src" : 480
+                        }
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "prova1"
+         }, {
+            "value" : "prova2 prova3"
+         } ]
+      }
+   }, {
+      "id" : "nffg_27",
+      "version" : "string",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "nodeId" : "string",
+               "ingPhysPort" : "string",
+               "mac" : {
+                  "src" : "12-34-56-78-9A-BC",
+                  "dst" : "DE-F1-23-45-67-89",
+                  "ethertype" : 2048
+               },
+               "ip" : {
+                  "src" : "192.168.0.18",
+                  "dst" : "192.168.0.30"
+               },
+               "tcp" : {
+                  "src" : 80,
+                  "dst" : 8080
+               }
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "NAT",
+            "specification" : {
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 0,
+                     "direction" : "in"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "string"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "string"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "string",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "string"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "string"
+         } ]
+      }
+   }, {
+      "id" : "nffg_28",
+      "version" : "0.1 D3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ingPhysPort" : "10"
+            }
+         }, {
+            "id" : "ep_2",
+            "flowspace" : {
+               "ingPhysPort" : "13"
+            }
+         }, {
+            "id" : "ep_3",
+            "flowspace" : {
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "firewall",
+            "specification" : {
+               "deployment" : {
+                  "type" : "KVM"
+               },
+               "image" : {
+                  "uri" : "http://www.a.org/data.img"
+               },
+               "cpu" : {
+                  "numCores" : 7
+               },
+               "memory" : {
+                  "size" : "10MiB"
+               },
+               "storage" : {
+                  "size" : "100MiB"
+               }
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in",
+                     "type" : "GbE"
+                  }
+               }, {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out",
+                     "type" : "10GbE"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+               "control_interface" : [ {
+                  "id" : "ci_1",
+                  "attributes" : {
+                     "attribute" : [ {
+                        "value" : "tcp://127.0.0.1:5555"
+                     }, {
+                        "value" : "Netconf"
+                     } ]
+                  }
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Measure_Script"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_1",
+            "type" : "BiSBiS",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "cp_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "ep_3"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               }, {
+                  "id_ref" : "ep_2",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "Bandwith ep_1 cp_1 100mbit"
+               }, {
+                  "value" : "Delay ep_1 cp_1 50ms"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+      }
+   }, {
+      "id" : "nffg_110",
+      "version" : "3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ip" : {
+                  "src" : "192.168.0.30"
+               },
+               "tcp" : {
+                  "src" : 80,
+                  "dst" : 80
+               }
+            }
+         } ]
+      },
+      "network_functions" : {
+      },
+      "network_elements" : {
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "string"
+         } ]
+      }
+   }, {
+      "id" : "nffg_111",
+      "version" : "3.1",
+      "endpoints" : {
+         "endpoint" : [ {
+            "id" : "ep_1",
+            "flowspace" : {
+               "ip" : {
+                  "src" : "192.168.0.30"
+               },
+               "tcp" : {
+                  "src" : 80,
+                  "dst" : 80
+               }
+            }
+         } ]
+      },
+      "network_functions" : {
+         "network_function" : [ {
+            "id" : "nf_1",
+            "functionalType" : "WAN accelerator",
+            "specification" : {
+            },
+            "connection_points" : {
+               "connection_point" : [ {
+                  "id" : "cp_2",
+                  "port" : {
+                     "id" : 77,
+                     "direction" : "out"
+                  }
+               }, {
+                  "id" : "cp_1",
+                  "port" : {
+                     "id" : 79,
+                     "direction" : "in"
+                  }
+               } ]
+            },
+            "control_interfaces" : {
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "string"
+               } ]
+            }
+         } ]
+      },
+      "network_elements" : {
+         "network_element" : [ {
+            "id" : "ne_20",
+            "type" : "quellocheè",
+            "eps-cps" : {
+               "ep-cp" : [ {
+                  "id_ref" : "ep_1",
+                  "flowrules" : [ {
+                     "flowspace" : {
+                     },
+                     "actions" : {
+                        "action" : [ {
+                           "type" : "output",
+                           "port" : "cp_1"
+                        } ]
+                     }
+                  } ]
+               } ]
+            },
+            "monitoring_parameters" : {
+               "parameter" : [ {
+                  "value" : "string"
+               } ]
+            }
+         } ]
+      },
+      "monitoring_parameters" : {
+         "parameter" : [ {
+            "value" : "string"
+         } ]
+      }
+   } ]
+}

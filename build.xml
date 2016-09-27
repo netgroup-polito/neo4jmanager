@@ -1,0 +1,126 @@
+<?xml version="1.0" standalone="yes"?>
+<project name="Neo4jManager" basedir="." default="build">
+	<property name="src.dir" location="${basedir}/src"/>
+	<property name="gen-src.dir" location="${basedir}/gen-src"/>
+	<property name="build.dir" location="${basedir}/build"/>
+	<property name="schema.dir" location="${basedir}/schema"/>
+	<property name="xmlfile.dir" location="${basedir}/xml-json"/>
+	<property name="api.dir" location="${basedir}/documentation/api"/>
+	<property name="packages" value="it.polito.nffg.neo4j.manager, it.polito.nffg.neo4j.exceptions, it.polito.nffg.neo4j.jaxb"/>
+  	<property file="server.properties"/>
+	<property file="client.properties"/>
+	
+	<path id="project.classpath">
+	   	<pathelement location="${build.dir}"/>
+		<fileset dir="${basedir}/${neo4jJarsDirectory}"/>
+		<fileset dir="${basedir}/${otherJarsDirectory}"/>
+	</path>
+
+	<target name="init">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${gen-src.dir}"/>
+		<mkdir dir="${api.dir}"/>
+	</target>
+	
+	<target name="-chk-bindings">
+		<uptodate property="generate-bindings.notRequired" targetfile="${gen-src.dir}/.flagfile">
+			<srcfiles dir="${schema.dir}" includes="${schemaForBinding}"/>
+		</uptodate>
+	</target>
+	
+	<target name="generate-bindings" unless="generate-bindings.notRequired" depends="init,-chk-bindings" description="Create the value classes">
+		<exec executable="xjc" failonerror="true" output="xjc_log.txt">
+			<arg line="-d ${gen-src.dir} -p it.polito.nffg.neo4j.jaxb ${schema.dir}/${schemaForBinding}"/>
+		</exec>
+		<touch file="${gen-src.dir}/.flagfile"/>
+	</target>
+	
+	<target name="build" depends="init, generate-bindings" description="Build the sources">
+		<javac destdir="${build.dir}" debug="on" includeantruntime="true">
+			<src path="${gen-src.dir}"/>
+			<src path="${src.dir}/it/polito/nffg/neo4j/manager/"/>
+			<src path="${src.dir}/it/polito/nffg/neo4j/exceptions/"/>
+			<src path="${src.dir}/it/polito/nffg/neo4j/config/"/>
+			<classpath refid="project.classpath"/>
+		</javac>
+		<echo message="Operation completed successfully."/>
+	</target>
+
+  	<target name="create-nffg" depends="build" description="Save a Nffg into the Neo4j DB">
+    	<echo message="Saving Nffg(s) into the Neo4j DB."/>
+    	<java classname="it.polito.nffg.neo4j.manager.Neo4jClient" failonerror="true" fork="true">
+    		<arg value="-create"/>
+    		<arg value="${xmlfile.dir}\${XMLfileForPOST}"/>
+    		<arg value="${parameterMediaType}"/>
+      		<classpath refid="project.classpath"/>
+    	</java>
+  		<echo message="Operation completed successfully."/>
+  	</target>
+	
+	<target name="find-paths" depends="build" description="Find all paths from a source node to a destination node">
+	    <echo message="Searching the paths."/>
+	    <java classname="it.polito.nffg.neo4j.manager.Neo4jClient" failonerror="true" fork="true">
+	    	<arg value="-paths"/>
+	    	<arg value="${parameterNffg}"/>
+	    	<arg value="${parameterSrcNode}"/>
+	    	<arg value="${parameterDstNode}"/>
+	    	<arg value="${parameterDirection}"/>
+	    	<arg value="${parameterMediaType}"/>
+	    	<arg value="${xmlfile.dir}\${XMLfileForPaths}"/>
+	     	<classpath refid="project.classpath"/>
+	    </java>
+	  	<echo message="Operation completed successfully."/>
+	</target>
+	
+	<target name="valuate-reachability" depends="build" description="Valuate whether a node is reachable from another node or not">
+		<echo message="Valuating the reachability."/>
+		<java classname="it.polito.nffg.neo4j.manager.Neo4jClient" failonerror="true" fork="true">
+		   	<arg value="-reachability"/>
+			<arg value="${parameterNffg}"/>
+		   	<arg value="${parameterSrcNode}"/>
+		   	<arg value="${parameterDstNode}"/>
+		   	<arg value="${parameterDirection}"/>
+			<arg value="${parameterMediaType}"/>
+			<arg value="${xmlfile.dir}\${XMLfileForProperty}"/>
+		    <classpath refid="project.classpath"/>
+		</java>
+		<echo message="Operation completed successfully."/>
+	</target>
+	
+	<target name="retrieve-nffg" depends="build" description="Retrieve one or more Nffg from the Neo4j DB">
+		<echo message="Retrieving Nffg(s) from the Neo4j DB."/>
+		<java classname="it.polito.nffg.neo4j.manager.Neo4jClient" failonerror="true" fork="true">
+			<arg value="-retrieve"/>
+			<arg value="${parameterNffg}"/>
+			<arg value="${parameterMediaType}"/>
+			<arg value="${xmlfile.dir}\${XMLfileForGET}"/>
+			<classpath refid="project.classpath"/>
+		</java>
+		<echo message="Operation completed successfully."/>
+	</target>
+	
+	<target name="delete-nffg" depends="build" description="Delete a Nffg from the Neo4j DB">
+		<echo message="Deleting Nffg(s) from the Neo4j DB."/>
+		<java classname="it.polito.nffg.neo4j.manager.Neo4jClient" failonerror="true" fork="true">
+			<arg value="-delete"/>
+			<arg value="${parameterNffg}"/>
+		    <classpath refid="project.classpath"/>
+		</java>
+		<echo message="Operation completed successfully."/>
+	</target>
+
+  	<target name="javadoc" depends="generate-bindings" description="Generates javadoc">
+  		<delete dir="${api.dir}"/>
+    	<javadoc sourcepath="${basedir}" destdir="${api.dir}" useexternalfile="yes" packagenames="${packages}">
+    		<fileset dir="${gen-src.dir}" includes="/**/*.java"/>
+    		<fileset dir="${src.dir}" includes="/**/*.java" excludes="/**/Neo4jClient.java"/>
+    		<classpath refid="project.classpath"/>
+    	</javadoc>
+  	</target>
+
+  	<target name="clean" description="Delete all the generated files">
+  		<delete dir="${build.dir}"/>
+    	<delete dir="${gen-src.dir}"/>
+  		<delete dir="${api.dir}"/>
+  	</target>
+</project>

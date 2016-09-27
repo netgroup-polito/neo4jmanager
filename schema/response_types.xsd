@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:resp="http://www.example.org/response/"
+        targetNamespace="http://www.example.org/response/"
+        elementFormDefault="qualified">
+        
+ 	<element name="paths">
+ 		<complexType>
+ 			<choice>
+ 				<element name="message" type="string"/>
+ 				<element name="path" type="string" maxOccurs="unbounded"/>
+ 			</choice>
+ 			<attribute name="source" type="string"/>
+ 			<attribute name="destination" type="string"/>
+ 			<attribute name="direction" type="string"/>
+ 		</complexType>
+ 	</element>
+ 	
+ 	<element name="property">
+ 		<complexType>
+ 			<sequence>
+ 				<element name="name" type="string"/>
+ 				<element name="response" type="boolean"/>
+ 			</sequence>
+ 			<attribute name="source" type="string"/>
+ 			<attribute name="destination" type="string"/>
+ 			<attribute name="direction" type="string"/>
+ 		</complexType>
+ 	</element> 
+ 	
+ 	<element name="httpMessage">
+ 		<complexType>
+ 			<sequence>
+ 				<element name="statusCode" type="unsignedShort" default="500"/>
+ 				<element name="reasonPhrase" type="string" default="Internal Server Error"/>
+ 				<element name="message" type="string" minOccurs="0"/>
+ 			</sequence>
+ 		</complexType>
+ 	</element>
+ </schema>	

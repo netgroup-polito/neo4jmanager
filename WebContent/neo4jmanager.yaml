@@ -1,0 +1,860 @@
+swagger: '2.0'
+info:
+  version: "1.0"
+  title: Neo4j Manager REST API
+  description: |
+    Documentation of the Neo4j Manager Web Service. 
+    
+    **Hosted on: http://localhost:8080/Project-Neo4jManager**
+    
+    **Base URL is /rest/**
+
+    **Contact: [sebastiano.gazze@gmail.com](mailto:sebastiano.gazze@gmail.com)**
+   
+host: localhost:8080
+basePath: /Project-Neo4jManager/rest
+schemes:
+  - http
+paths:
+  /graphs:
+    get:
+      summary: Retrieve all the available graphs.
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: The retrieved graphs.
+          schema:
+            $ref: '#/definitions/NffgSet'
+        404:
+          description: There are no available graphs.
+          schema:
+            $ref: '#/definitions/HttpMessage'
+        500:
+          description: Operation failed.
+          schema:
+            $ref: '#/definitions/HttpMessage'
+          
+    post:
+      summary: Create a new graph.
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: graph
+          in: body
+          description: The graph to be loaded.
+          schema: 
+            $ref: '#/definitions/Nffg'
+          required: true
+      responses:
+        200:
+          description: Graph created but a problem occurred during the generation of the URI.
+          schema: 
+            $ref: '#/definitions/HttpMessage'
+        201:
+          description: Graph created successfully.
+          schema: 
+            $ref: '#/definitions/HttpMessage'
+        400:
+          description: A validation error occurred during the process.
+          schema: 
+            $ref: '#/definitions/HttpMessage'
+        500:
+          description: Operation failed.
+          schema:
+            $ref: '#/definitions/HttpMessage'
+            
+  /graphs/{graphId}:
+    get:
+      summary: Retrieve the graph whose Id is {graphId}.
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: graphId
+          in: path
+          description: The Id of the graph.
+          type: string
+          required: true
+      responses:
+        200:
+          description: The retrieved graph.
+          schema:
+            $ref: '#/definitions/Nffg'
+        404:
+          description: There is no graph whose Id is {graphId}.
+          schema:
+            $ref: '#/definitions/HttpMessage'
+        500:
+          description: Operation failed.
+          schema:
+            $ref: '#/definitions/HttpMessage'
+    delete:
+      summary: Delete the graph whose Id is {graphId}.
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: graphId
+          in: path
+          type: string
+          description: The Id of the graph.
+          required: true
+      responses:
+        204:
+          description: Graph deleted successfully.
+        404:
+          description: There is no graph whose Id is {graphId}.
+          schema:
+            $ref: '#/definitions/HttpMessage'
+        500:
+          description: Operation failed.
+          schema:
+            $ref: '#/definitions/HttpMessage'
+  
+  /graphs/{graphId}/property:
+    get:
+      summary: Check whether a property (specified by query parameters) on a given graph is satisfied or not.
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: graphId
+          in: path
+          type: string
+          description: The Id of the graph.
+          required: true
+        - name: name
+          in: query
+          type: string
+          description: The name of property to be verified (only 'reachability' is supported for the moment).
+          required: true
+          default: reachability
+        - name: src
+          in: query
+          type: string
+          description: The source node.
+          required: true
+          default: ep_1
+        - name: dst
+          in: query
+          type: string
+          description: The destination node.
+          required: true
+          default: ep_2
+        - name: dir
+          in: query
+          type: string
+          format: incoming, outgoing or both
+          description: The direction considered in the calculation of paths.
+          required: true
+          default: both
+      responses:
+        200:
+          description: The response.
+          schema:
+            $ref: '#/definitions/Property'
+        400:
+          description: Bad direction value or requested property isn't supported.
+          schema:
+            $ref: '#/definitions/HttpMessage'
+        404:
+          description: Graph or at least one parameter node not found.
+          schema:
+            $ref: '#/definitions/HttpMessage'
+        500:
+          description: Operation failed.
+          schema:
+            $ref: '#/definitions/HttpMessage'
+            
+  /graphs/{graphId}/paths:
+    get:
+      summary: Get all the paths in the graph from one node to another (specified by the query parameters).
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: graphId
+          in: path
+          type: string
+          description: The ID of the graph
+          required: true
+        - name: src
+          in: query
+          type: string
+          description: The source node
+          required: true
+          default: ep_1
+        - name: dst
+          in: query
+          type: string
+          description: The destination node
+          required: true
+          default: ep_2
+        - name: dir
+          in: query
+          type: string
+          format: incoming, outgoing or both
+          description: The direction considered in the calculation of paths
+          required: true
+          default: both
+      responses:
+        200:
+          description: The calculated paths.
+          schema:
+            $ref: '#/definitions/Paths'
+        400:
+          description: Bad direction value.
+          schema:
+            $ref: '#/definitions/HttpMessage'
+        404:
+          description: Graph or at least one parameter node not found.
+          schema:
+            $ref: '#/definitions/HttpMessage'
+        500:
+          description: Operation failed.
+          schema:
+            $ref: '#/definitions/HttpMessage'
+
+definitions:
+
+  HttpMessage:
+    type: object
+    xml:
+      name: httpMessage
+      namespace: http://www.example.org/response/
+    properties:
+      statusCode:
+        type: integer
+        format: int32
+        minimum: 100
+        maximum: 600
+        exclusiveMaximum: true
+      reasonPhrase:
+        type: string
+      message:
+        type: string
+    required: [statusCode, reasonPhrase]
+    additionalProperties: false
+        
+  Paths:
+    type: object
+    xml:
+      name: paths
+      namespace: http://www.example.org/response/
+    properties:
+      message:
+        type: string
+      path:
+        type: array
+        minItems: 1
+        items: 
+          type: string
+      source:
+        type: string
+        xml:
+          attribute: true
+      destination:
+        type: string
+        xml:
+          attribute: true
+      direction:
+        type: string
+        enum: [incoming, outgoing, both]
+        xml:
+          attribute: true
+    required: [source, destination, direction]
+    additionalProperties: false
+
+  Property:
+    type: object
+    xml:
+      name: property
+      namespace: http://www.example.org/response/
+    properties:
+      name:
+        type: string
+        enum: [reachability]
+      response:
+        type: boolean
+      source:
+        type: string
+        xml:
+          attribute: true
+      destination:
+        type: string
+        xml:
+          attribute: true
+      direction:
+        type: string
+        enum: [incoming, outgoing, both]
+        xml:
+          attribute: true
+    required: [name, response, source, destination, direction]
+    additionalProperties: false
+  
+  Mac:
+    type: object
+    properties:
+      src: 
+        type: string
+        pattern: ^(([a-fA-F0-9]{2})-){5,7}[a-fA-F0-9]{2}$
+        default: 12-34-56-78-9A-BC
+        xml:
+          attribute: true
+      dst: 
+        type: string
+        pattern: ^(([a-fA-F0-9]{2})-){5,7}[a-fA-F0-9]{2}$
+        default: DE-F1-23-45-67-89
+        xml:
+          attribute: true
+      ethertype:
+        type: integer
+        format: int32
+        default: 2048
+        minimum: 1536
+        maximum: 65536
+        exclusiveMaximum: true
+        xml:
+          attribute: true
+      vlanId:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 4096
+        exclusiveMaximum: true
+        xml:
+          attribute: true
+      vlanPcp:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 8
+        exclusiveMaximum: true
+        xml:
+          attribute: true
+    additionalProperties: false
+    
+  Ip:
+    type: object
+    properties:
+      src:
+        type: string
+        pattern: ^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$
+        default: 192.168.0.18
+        xml:
+          attribute: true
+      dst: 
+        type: string
+        pattern: ^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$
+        default: 192.168.0.30
+        xml:
+          attribute: true
+      ipProtocol:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 65536
+        exclusiveMaximum: true
+        xml:
+          attribute: true
+      tos:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 65536
+        exclusiveMaximum: true
+        xml:
+          attribute: true
+    additionalProperties: false
+    
+  Tcp:
+    type: object
+    properties:
+      src:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 65536
+        exclusiveMaximum: true
+        xml:
+          attribute: true
+      dst:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 65536
+        exclusiveMaximum: true
+        xml:
+          attribute: true
+    additionalProperties: false
+    
+  Udp:
+    type: object
+    properties:
+      src:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 65536
+        exclusiveMaximum: true
+        xml:
+          attribute: true
+      dst:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 65536
+        exclusiveMaximum: true
+        xml:
+          attribute: true
+    additionalProperties: false    
+  
+  FlowspaceEp:
+    type: object
+    properties:
+      nodeId:
+        type: string
+        xml:
+          attribute: true
+      ingPhysPort:
+        type: string
+        xml:
+          attribute: true
+      mac:
+        $ref: "#/definitions/Mac"
+      ip:
+        $ref: "#/definitions/Ip"
+      tcp:
+        $ref: "#/definitions/Tcp"
+      udp:
+        $ref: "#/definitions/Udp"
+    additionalProperties: false
+  
+  EndpointType:
+    type: object
+    properties:
+      id: 
+        type: string
+        pattern: ^ep_[0-9]+$
+        default: ep_1
+        xml:
+          attribute: true
+      flowspace:
+        $ref: "#/definitions/FlowspaceEp"
+    required: [id, flowspace]
+    additionalProperties: false
+  
+  Endpoints:
+    type: object
+    properties:
+      endpoint:
+        type: array
+        items:
+          $ref: "#/definitions/EndpointType"
+    required: [endpoint]
+    additionalProperties: false
+  
+  Deployment:
+    type: object
+    properties:
+      type:
+        type: string
+        default: N.A.
+        xml:
+          attribute: true
+    additionalProperties: false
+    
+  Image:
+    type: object
+    properties:
+      uri:
+        type: string
+        default: N.A.
+        xml:
+          attribute: true
+    additionalProperties: false
+    
+  Cpu:
+    type: object
+    properties:
+      model:
+        type: string
+        default: N.A.
+        xml:
+          attribute: true
+      architecture:
+        type: string
+        default: N.A.
+        xml:
+          attribute: true
+      numCores:
+        type: integer
+        format: int32
+        default: 1
+        minimum: 1
+        xml:
+          attribute: true
+      clockSpeed:
+        type: string
+        default: N.A.
+        xml:
+          attribute: true
+    additionalProperties: false
+    
+  Memory:
+    type: object
+    properties:
+      type:
+        type: string
+        default: N.A.
+        xml:
+          attribute: true
+      size:
+        type: string
+        default: N.A.
+        xml:
+          attribute: true
+    additionalProperties: false
+    
+  Storage:
+    type: object
+    properties:
+      type:
+        type: string
+        default: N.A.
+        xml:
+          attribute: true
+      size:
+        type: string
+        default: N.A.
+        xml:
+          attribute: true
+    additionalProperties: false
+  
+  Specification:
+    type: object
+    properties:
+      deployment:
+        $ref: "#/definitions/Deployment"
+      image:
+        $ref: "#/definitions/Image"
+      cpu:
+        $ref: "#/definitions/Cpu"
+      memory:
+        $ref: "#/definitions/Memory"
+      storage:
+        $ref: "#/definitions/Storage"
+    required: [deployment, image, cpu, memory, storage]
+    additionalProperties: false
+  
+  Port:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        minimum: 0
+        xml:
+          attribute: true
+      direction:
+        type: string
+        enum: [in, out, both]
+        xml:
+          attribute: true
+      type:
+        type: string
+        default: N.A.
+        xml:
+          attribute: true
+    required: [id, direction]
+    additionalProperties: false
+  
+  ConnectionPointType:
+    type: object
+    properties:
+      id:
+        type: string
+        pattern: ^cp_[0-9]+$
+        default: cp_1
+        xml:
+          attribute: true
+      port:
+        $ref: "#/definitions/Port"
+    required: [id, port]
+    additionalProperties: false
+        
+  ConnectionPoints:
+    type: object
+    properties:
+      connection_point:
+        type: array
+        minItems: 1
+        items:
+          $ref: "#/definitions/ConnectionPointType"
+    additionalProperties: false
+  
+  AttributeType:
+    type: object
+    properties:
+      value:
+        type: string
+        xml:
+          attribute: true
+    required: [value]
+    additionalProperties: false
+  
+  Attributes:
+    type: object
+    properties:
+      attribute:
+        type: array
+        items:
+          $ref: "#/definitions/AttributeType"
+    additionalProperties: false
+  
+  ControlInterfaceType:
+    type: object
+    properties:
+      id:
+        type: string
+        pattern: ^ci_[0-9]+$
+        default: ci_1
+        xml:
+          attribute: true
+      attributes:
+        $ref: "#/definitions/Attributes"
+    required: [id, attributes]
+    additionalProperties: false
+    
+  ControlInterfaces:
+    type: object
+    properties:
+      control_interface:
+        type: array
+        items:
+          $ref: "#/definitions/ControlInterfaceType"
+    additionalProperties: false
+    
+  NetworkFunctionType:
+    type: object
+    properties:
+      id: 
+        type: string
+        pattern: ^nf_[0-9]+$
+        default: nf_1
+        xml:
+          attribute: true
+      functionalType:
+        type: string
+        default: NAT
+        xml:
+          attribute: true
+      specification:
+        $ref: "#/definitions/Specification"
+      connection_points:
+        $ref: "#/definitions/ConnectionPoints"
+      control_interfaces:
+        $ref: "#/definitions/ControlInterfaces"
+      monitoring_parameters:
+        $ref: "#/definitions/MonitoringParameters"
+    required: [id, functionalType, specification, connection_points, control_interfaces, monitoring_parameters]
+    additionalProperties: false
+    
+  NetworkFunctions:
+    type: object
+    properties:
+      network_function:
+        type: array
+        items:
+          $ref: "#/definitions/NetworkFunctionType"
+    required: [network_function]
+    additionalProperties: false
+  
+  FlowspaceFr:
+    type: object
+    properties:
+      ingPort:
+        type: string
+        xml:
+          attribute: true
+      mac:
+        $ref: "#/definitions/Mac"
+      ip:
+        $ref: "#/definitions/Ip"
+      tcp:
+        $ref: "#/definitions/Tcp"
+      udp:
+        $ref: "#/definitions/Udp"
+    additionalProperties: false
+   
+  Actions:
+    type: object
+    properties:
+      action:
+        type: array
+        minItems: 1
+        items:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [output, discard]
+              xml:
+                attribute: true
+            port:
+              type: string
+              default: cp_1
+              xml:
+                attribute: true
+          required: [type]
+          additionalProperties: false
+    additionalProperties: false
+  
+  FlowRulesType:
+    type: object
+    properties:
+      flowspace:
+        $ref: "#/definitions/FlowspaceFr"
+      actions:
+        $ref: "#/definitions/Actions"
+    required: [flowspace, actions]
+    additionalProperties: false
+  
+  EpsCps:
+    type: object
+    properties:
+      ep-cp:
+        type: array
+        items:
+          type: object
+          properties:
+            id_ref:
+              type: string
+              default: ep_1
+              xml:
+                attribute: true
+            flowrules:
+              type: array
+              minItems: 1
+              items:
+                $ref: "#/definitions/FlowRulesType"
+          required: [id_ref]
+          additionalProperties: false
+    additionalProperties: false
+    
+  NetworkElementType:
+    type: object
+    properties:
+      id:
+        type: string
+        pattern: ^ne_[0-9]+$
+        default: ne_1
+        xml:
+          attribute: true
+      type:
+        type: string
+        xml:
+          attribute: true
+      eps-cps:
+        $ref: "#/definitions/EpsCps"
+      monitoring_parameters:
+        $ref: "#/definitions/MonitoringParameters"
+    required: [id, type, eps-cps, monitoring_parameters]
+    additionalProperties: false
+  
+  NetworkElements:
+    type: object
+    properties:
+      network_element:
+        type: array
+        items:
+          $ref: "#/definitions/NetworkElementType"
+    required: [network_element]
+    additionalProperties: false
+  
+  ParameterType:
+    type: object
+    properties:
+      value:
+        type: string
+        xml:
+          attribute: true
+    required: [value]
+    additionalProperties: false
+    
+  MonitoringParameters:
+    type: object
+    properties:
+      parameter:
+        type: array
+        items:
+          $ref: "#/definitions/ParameterType"
+    additionalProperties: false
+    
+  Nffg:
+    type: object
+    xml:
+      name: nffg
+      namespace: http://www.example.org/nffg/
+    properties:
+      id:
+        type: string
+        pattern: ^nffg_[0-9]+$
+        default: nffg_1
+        xml:
+          attribute: true
+      version:
+        type: string
+        xml:
+          attribute: true
+      endpoints:
+        $ref: "#/definitions/Endpoints"
+      network_functions:
+        $ref: "#/definitions/NetworkFunctions"
+      network_elements:
+        $ref: "#/definitions/NetworkElements"
+      monitoring_parameters:
+        $ref: "#/definitions/MonitoringParameters"
+    required: [endpoints, network_functions, network_elements, monitoring_parameters]
+    additionalProperties: false
+    
+  NffgSet:
+    type: object
+    xml:
+      name: nffg-set
+      namespace: http://www.example.org/nffg/
+    properties:
+      nffg:
+        type: array
+        minItems: 1
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              pattern: ^nffg_[0-9]+$
+              default: nffg_1
+              xml:
+                attribute: true
+            version:
+              type: string
+              xml:
+                attribute: true
+            endpoints:
+              $ref: "#/definitions/Endpoints"
+            network_functions:
+              $ref: "#/definitions/NetworkFunctions"
+            network_elements:
+              $ref: "#/definitions/NetworkElements"
+            monitoring_parameters:
+              $ref: "#/definitions/MonitoringParameters"
+          required: [endpoints, network_functions, network_elements, monitoring_parameters]
+          additionalProperties: false
+    additionalProperties: false
+      
