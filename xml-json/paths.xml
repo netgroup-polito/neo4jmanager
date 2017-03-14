@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<paths xmlns="http://www.example.org/response/" source="ep_1" destination="ep_2" direction="both">
-    <path>(ep_1)--&gt;(cp_1)&lt;--(ep_2)</path>
-    <path>(ep_1)--&gt;(cp_1)--&gt;(nf_1)--&gt;(cp_2)--&gt;(ep_2)</path>
+<paths xmlns="http://www.example.org/response/" source="ep_1" destination="ep_2" direction="incoming">
+    <message>No available paths</message>
 </paths>

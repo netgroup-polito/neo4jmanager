@@ -1,5 +1,0 @@
-graphDBPath=neo4j/db/nffg.graphdb
-neo4jJarsDirectory=neo4j/lib
-otherJarsDirectory=WebContent/WEB-INF/lib
-schemaForBinding=nffg.xsd
-schemaForValidating=nffg.xsd

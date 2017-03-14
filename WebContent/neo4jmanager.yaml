@@ -5,14 +5,14 @@ info:
   description: |
     Documentation of the Neo4j Manager Web Service. 
     
-    **Hosted on: http://localhost:8080/Project-Neo4jManager**
+    **Hosted on: http://localhost:8080/neo4jmanager**
     
     **Base URL is /rest/**
 
     **Contact: [sebastiano.gazze@gmail.com](mailto:sebastiano.gazze@gmail.com)**
    
 host: localhost:8080
-basePath: /Project-Neo4jManager/rest
+basePath: /neo4jmanager/rest
 schemes:
   - http
 paths:
