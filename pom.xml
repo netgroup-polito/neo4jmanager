@@ -41,12 +41,12 @@
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
-        <!-- <dependency>
+         <dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>javax.ws.rs</groupId>
 			<artifactId>jsr311-api</artifactId>
 			<version>1.1.1</version>
@@ -90,13 +90,13 @@
 			<groupId>org.glassfish.hk2.external</groupId>
 			<artifactId>aopalliance-repackaged</artifactId>
 			<version>2.4.0-b31</version>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>org.ow2.asm</groupId>
 			<artifactId>asm-debug-all</artifactId>
 			<version>5.0.4</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.glassfish.hk2</groupId>
 			<artifactId>hk2-api</artifactId>
 			<version>2.4.0-b31</version>
@@ -135,7 +135,7 @@
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
 			<version>3.18.1-GA</version>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
@@ -146,7 +146,7 @@
 			<artifactId>persistence-api</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.core</artifactId>
 			<version>4.2.0</version>

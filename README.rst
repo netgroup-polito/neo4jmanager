@@ -35,10 +35,12 @@ when the web service has been deployed and started.
 Installation guide
 ------------------
 Install Tomcat and configure Tomcat Manager by creating an user with at least the ``manager-script`` role. 
-In order to enable this permission, open the ```[catalina_home]/con/tomcat-users.xml`` and place the following content under the tomcat-users tag:
+In order to enable this permission, open the ``[catalina_home]/conf/tomcat-users.xml`` and place the following content under the tomcat-users tag:
     
     ``<role rolename="root"/> 
     <user username="root" password="root" roles="tomcat,manager-gui, manager-script"/>``
+
+Probably Tomcat Manager will need to increase the war file size limit defined in  ``[catalina_home]/webapps/manager/WEB-INF/web.xml``.
 
 Update the Ant script ``[neo4jmanager]/tomcat-build.xml`` with the proper information about your Tomcat installation:
 

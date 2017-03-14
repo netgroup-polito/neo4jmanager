@@ -31,6 +31,7 @@
 		<mkdir dir="${api.dir}"/>
 		<mkdir dir="${gen-war.dir}"/>
 		<mkdir dir="${basedir}/lib"/>
+		<mkdir dir="${basedir}/neo4j"/>
 	</target>
 	
 	<target name="clean" description="Delete all the generated files">
