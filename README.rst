@@ -85,9 +85,9 @@ a target for each method implemented by the web service. Otherwise, the Client c
 - ``ant delete-nffg``
 - ``java Neo4jClient delete -nffgId``
 
- where:
+  where:
 
- - nffgId is a non negative number that identifies the graph
+  - nffgId is a non negative number that identifies the graph
 
 **Get all paths from source node to destination node**
 
